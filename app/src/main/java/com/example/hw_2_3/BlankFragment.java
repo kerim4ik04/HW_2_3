@@ -12,14 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class BlankFragment extends Fragment {
 
-    private Button one;
-    private Button two;
-    private TextView zero;
-    private int i = +1;
+    private Button btn_minus1;
+    private Button btn_plus1;
+    private TextView tv_result;
+
 
 
     @Override
@@ -33,19 +32,28 @@ public class BlankFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        zero = requireActivity().findViewById(R.id.zero);
-        one = requireActivity().findViewById(R.id.one);
-        two = requireActivity().findViewById(R.id.two);
-        
-        switch (view.getId()){
-            case R.id.one:
-                zero.setText(+1) ;
-                break;
-            case R.id.two:
-                zero.setText(-1);
-                break;
-        }
+        tv_result = requireActivity().findViewById(R.id.tv_result);
+        btn_minus1 = requireActivity().findViewById(R.id.btn_minus1);
+        btn_plus1 = requireActivity().findViewById(R.id.btn_plus1);
 
+
+        btn_plus1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                double carentNumber = Double.parseDouble(tv_result.getText().toString());
+                carentNumber = carentNumber + 1;
+                tv_result.setText(String.valueOf(carentNumber));
+            }
+        });
+        btn_minus1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                double carentNumber = Double.parseDouble(tv_result.getText().toString());
+                carentNumber = carentNumber - 1;
+                tv_result.setText(String.valueOf(carentNumber));
+            }
+
+
+        });
     }
-
 }
